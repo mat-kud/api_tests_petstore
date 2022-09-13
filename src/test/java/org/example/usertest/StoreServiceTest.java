@@ -13,7 +13,7 @@ import java.util.Random;
 public class StoreServiceTest {
 
     @Test
-    public void getOrderByOrderIdTest(){
+    public void getOrderByOrderIdTest() {
         Order expectedOrder = createOrder();
         StoreServiceSteps.createOrder(expectedOrder);
         Order createdOrder = StoreServiceSteps.getOrderById(expectedOrder.getId()).as(Order.class);
@@ -24,7 +24,7 @@ public class StoreServiceTest {
     }
 
     @Test
-    public void createOrderTest(){
+    public void createOrderTest() {
         Order expectedOrder = createOrder();
         Order createdOrder = StoreServiceSteps.createOrder(expectedOrder).as(Order.class);
         Assert.assertEquals(createdOrder.getPetId(), expectedOrder.getPetId(),
@@ -32,16 +32,16 @@ public class StoreServiceTest {
     }
 
     @Test
-    public void deleteOrderByOrderIdTest(){
+    public void deleteOrderByOrderIdTest() {
         Order order = createOrder();
         StoreServiceSteps.createOrder(order);
         StoreServiceSteps.deleteOrderById(order.getId());
         Response deletedOrderResponse = StoreServiceSteps.getOrderById(order.getId());
         Assert.assertEquals(deletedOrderResponse.getStatusCode(), 404,
-                "User not deleted or invalid username");
+                "Order not deleted");
     }
 
-    private Order createOrder(){
+    private Order createOrder() {
         Random random = new Random();
         return new Order()
                 .setId(random.nextInt(100))

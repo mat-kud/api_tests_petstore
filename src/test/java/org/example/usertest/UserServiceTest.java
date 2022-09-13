@@ -11,7 +11,7 @@ import java.util.Random;
 public class UserServiceTest {
 
     @Test
-    public void getUserByUsernameTest(){
+    public void getUserByUsernameTest() {
         User expectedUser = createUser();
         UserServiceSteps.createUser(expectedUser);
         User createdUser = UserServiceSteps.getUserByUsername(expectedUser.getUsername()).as(User.class);
@@ -22,7 +22,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void createUserTest(){
+    public void createUserTest() {
         User expectedUser = createUser();
         User createdUser = UserServiceSteps.createUser(expectedUser).as(User.class);
         Assert.assertEquals(createdUser.getFirstName(), expectedUser.getFirstName(),
@@ -30,7 +30,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void deleteUserTest(){
+    public void deleteUserTest() {
         User user = createUser();
         UserServiceSteps.createUser(user);
         UserServiceSteps.deleteUserByUsername(user.getUsername());
@@ -40,14 +40,12 @@ public class UserServiceTest {
     }
 
     @Test
-    public void loginTest(){
+    public void loginTest() {
         User user = createUser();
         Response loginResponse = UserServiceSteps.loginUser(user.getUsername(), user.getPassword());
         Assert.assertEquals(loginResponse.getStatusCode(), 200,
                 "Unsuccessful login attempt");
     }
-
-
 
 
     private User createUser() {
