@@ -32,7 +32,7 @@ public abstract class CommonService {
     }
 
     protected Response getRequest(String uri) {
-        Log.info("Sending Get request to the URL " + uri);
+        Log.info("Sending Get request to the URI " + uri);
         Response response =  requestSpecification.expect().when().get(prepareUri.apply(uri));
         Log.info("Response status code is " + response.statusCode());
         Log.info("Response body is " + response.asPrettyString());
@@ -40,10 +40,17 @@ public abstract class CommonService {
     }
 
     protected Response postRequest(String uri, Object body) {
-        return requestSpecification.body(body).expect().when().post(prepareUri.apply(uri));
+        Log.info("Sending Post request to the URI " + uri);
+        Response response = requestSpecification.body(body).expect().when().post(prepareUri.apply(uri));
+        Log.info("Response status code is " + response.statusCode());
+        Log.info("Response body is " + response.asPrettyString());
+        return response;
     }
 
     protected void deleteRequest(String uri) {
-        requestSpecification.expect().when().delete(prepareUri.apply(uri));
+        Log.info("Sending Delete request to the URI " + uri);
+        Response response = requestSpecification.expect().when().delete(prepareUri.apply(uri));
+        Log.info("Response status code is " + response.statusCode());
+        Log.info("Response body is " + response.asPrettyString());
     }
 }
