@@ -14,7 +14,7 @@ public class StoreService extends CommonService {
         return instance;
     }
 
-    public Response getRequest(UriTemplate uri, int orderId) {
+    public Response getRequest(UriTemplate uri, long orderId) {
         return super.getRequest(uri.getUri(orderId));
     }
 
@@ -22,7 +22,7 @@ public class StoreService extends CommonService {
         return super.postRequest(uri.getUri(), body);
     }
 
-    public void deleteRequest(UriTemplate uri, int orderId) {
+    public void deleteRequest(UriTemplate uri, long orderId) {
         super.deleteRequest(uri.getUri(orderId));
     }
 }

@@ -7,10 +7,10 @@ import org.example.entities.enums.OrderStatus;
 @Data
 @Accessors(chain = true)
 public class Order {
-    private int id;
-    private int petId;
+    private long id;
+    private long petId;
     private int quantity;
     private String shipDate;
-    private OrderStatus status;
+    private String status;
     private boolean complete;
 }

@@ -7,8 +7,10 @@ import org.example.entities.Tag;
 import org.example.entities.enums.PetStatus;
 import org.example.steps.PetServiceSteps;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.util.List;
 import java.util.Random;
 
 public class PetServiceTest {
@@ -22,6 +24,26 @@ public class PetServiceTest {
                 "Incorrect pet id");
         Assert.assertEquals(createdPet.getName(), expectedPet.getName(),
                 "Incorrect pet name");
+    }
+
+    @DataProvider(name = "petStatus")
+    public Object[][] petStatus() {
+        return new Object[][]{
+                {PetStatus.AVAILABLE},
+                {PetStatus.PENDING},
+                {PetStatus.SOLD}
+        };
+    }
+
+    @Test(dataProvider = "petStatus")
+    public void getPetsByPetStatusTest(PetStatus petStatus){
+        List<Pet> pets = PetServiceSteps.getPetsByPetStatus(petStatus)
+                .jsonPath()
+                .getList("", Pet.class);
+
+        boolean isEveryPetStatusTheSame = verifyEveryPetStatus(pets, petStatus);
+        Assert.assertTrue(isEveryPetStatusTheSame,
+                "Not every pet status is " + petStatus.nameLowerCase());
     }
 
     @Test
@@ -42,6 +64,9 @@ public class PetServiceTest {
                 "Pet not deleted");
     }
 
+    private boolean verifyEveryPetStatus(List<Pet> pets, PetStatus petStatus){
+        return pets.stream().allMatch(pet -> pet.getStatus().equals(petStatus.nameLowerCase()));
+    }
 
     private Pet createPet() {
         Random random = new Random();
@@ -55,6 +80,7 @@ public class PetServiceTest {
                 .setTags(new Tag[]{new Tag()
                         .setId(1)
                         .setName("hungry")})
-                .setStatus(PetStatus.AVAILABLE);
+                .setStatus(PetStatus.AVAILABLE
+                        .nameLowerCase());
     }
 }

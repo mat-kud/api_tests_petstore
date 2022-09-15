@@ -6,6 +6,6 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class Tag {
-    private int id;
+    private long id;
     private String name;
 }

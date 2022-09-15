@@ -3,7 +3,6 @@ package org.example.usertest;
 import io.restassured.response.Response;
 import org.example.entities.Order;
 import org.example.entities.enums.OrderStatus;
-import org.example.service.StoreService;
 import org.example.steps.StoreServiceSteps;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -48,7 +47,7 @@ public class StoreServiceTest {
                 .setPetId(random.nextInt(100))
                 .setQuantity(1)
                 .setShipDate("2022-09-13T10:01:59.303Z")
-                .setStatus(OrderStatus.PLACED)
+                .setStatus(OrderStatus.PLACED.nameLowerCase())
                 .setComplete(false);
     }
 }
