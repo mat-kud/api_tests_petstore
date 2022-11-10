@@ -9,17 +9,18 @@ import org.testng.annotations.Test;
 
 import java.util.Random;
 
-public class StoreServiceTest {
+public class StoreServiceTest extends BaseTest {
 
     @Test
     public void getOrderByOrderIdTest() {
         Order expectedOrder = createOrder();
         StoreServiceSteps.createOrder(expectedOrder);
         Order createdOrder = StoreServiceSteps.getOrderById(expectedOrder.getId()).as(Order.class);
-        Assert.assertEquals(createdOrder.getId(), expectedOrder.getId(),
+        softAssert.assertEquals(createdOrder.getId(), expectedOrder.getId(),
                 "Incorrect order id");
-        Assert.assertEquals(createdOrder.getPetId(), expectedOrder.getPetId(),
+        softAssert.assertEquals(createdOrder.getPetId(), expectedOrder.getPetId(),
                 "Incorrect pet id");
+        softAssert.assertAll();
     }
 
     @Test

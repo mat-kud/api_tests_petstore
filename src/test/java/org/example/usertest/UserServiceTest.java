@@ -8,17 +8,18 @@ import org.testng.annotations.Test;
 
 import java.util.Random;
 
-public class UserServiceTest {
+public class UserServiceTest extends BaseTest {
 
     @Test
     public void getUserByUsernameTest() {
         User expectedUser = createUser();
         UserServiceSteps.createUser(expectedUser);
         User createdUser = UserServiceSteps.getUserByUsername(expectedUser.getUsername()).as(User.class);
-        Assert.assertEquals(createdUser.getId(), expectedUser.getId(),
+        softAssert.assertEquals(createdUser.getId(), expectedUser.getId(),
                 "Incorrect user id");
-        Assert.assertEquals(createdUser.getUsername(), expectedUser.getUsername(),
+        softAssert.assertEquals(createdUser.getUsername(), expectedUser.getUsername(),
                 "Incorrect username");
+        softAssert.assertAll();
     }
 
     @Test

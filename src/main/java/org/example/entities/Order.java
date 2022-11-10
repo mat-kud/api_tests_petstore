@@ -2,7 +2,6 @@ package org.example.entities;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
-import org.example.entities.enums.OrderStatus;
 
 @Data
 @Accessors(chain = true)

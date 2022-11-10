@@ -13,17 +13,18 @@ import org.testng.annotations.Test;
 import java.util.List;
 import java.util.Random;
 
-public class PetServiceTest {
+public class PetServiceTest extends BaseTest {
 
     @Test
     public void getPetByPetIdTest() {
         Pet expectedPet = createPet();
         PetServiceSteps.createPet(expectedPet);
         Pet createdPet = PetServiceSteps.getPetById(expectedPet.getId()).as(Pet.class);
-        Assert.assertEquals(createdPet.getId(), expectedPet.getId(),
+        softAssert.assertEquals(createdPet.getId(), expectedPet.getId(),
                 "Incorrect pet id");
-        Assert.assertEquals(createdPet.getName(), expectedPet.getName(),
+        softAssert.assertEquals(createdPet.getName(), expectedPet.getName(),
                 "Incorrect pet name");
+        softAssert.assertAll();
     }
 
     @DataProvider(name = "petStatus")
