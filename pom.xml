@@ -16,9 +16,11 @@
     <maven.surfire.version>3.1.0</maven.surfire.version>
     <rest-assured.version>4.5.1</rest-assured.version>
     <testng.version>7.5</testng.version>
-    <jackson.version>2.13.2.1</jackson.version>
+    <jackson.version>2.10.0</jackson.version>
     <lombok.version>1.18.22</lombok.version>
-    <slf4j.version>1.7.36</slf4j.version>
+    <slf4j.api.version>2.0.9</slf4j.api.version>
+    <slf4j.impl.version>2.22.0</slf4j.impl.version>
+    <log4j.version>2.22.0</log4j.version>
     <allure.testng.version>2.25.0</allure.testng.version>
     <allure.maven.version>2.12.0</allure.maven.version>
   </properties>
@@ -36,6 +38,11 @@
       <version>${jackson.version}</version>
     </dependency>
     <dependency>
+      <groupId>com.fasterxml.jackson.dataformat</groupId>
+      <artifactId>jackson-dataformat-yaml</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <version>${lombok.version}</version>
@@ -48,9 +55,24 @@
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-reload4j</artifactId>
-      <version>${slf4j.version}</version>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4j.api.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j2-impl</artifactId>
+      <version>${slf4j.impl.version}</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>${log4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>${log4j.version}</version>
     </dependency>
     <dependency>
       <groupId>io.qameta.allure</groupId>
