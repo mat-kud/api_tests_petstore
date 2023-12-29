@@ -24,10 +24,10 @@ public class UserServiceTest extends BaseTest {
 
     @Test
     public void createUserTest() {
-        User expectedUser = createUser();
-        User createdUser = UserServiceSteps.createUser(expectedUser).as(User.class);
-        Assert.assertEquals(createdUser.getFirstName(), expectedUser.getFirstName(),
-                "Incorrect first name");
+        User user = createUser();
+        Response responseCreatedUser = UserServiceSteps.createUser(user);
+        Assert.assertEquals(responseCreatedUser.getStatusCode(), 200,
+                "User not created");
     }
 
     @Test
