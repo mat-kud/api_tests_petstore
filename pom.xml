@@ -23,6 +23,7 @@
     <log4j.version>2.22.0</log4j.version>
     <allure.testng.version>2.25.0</allure.testng.version>
     <allure.maven.version>2.12.0</allure.maven.version>
+    <log.dir>${project.basedir}/logs</log.dir>
   </properties>
 
   <dependencies>
@@ -96,6 +97,9 @@
       <artifactId>maven-surefire-plugin</artifactId>
       <version>${maven.surfire.version}</version>
       <configuration>
+        <systemPropertyVariables>
+          <LOG_PATH>${log.dir}</LOG_PATH>
+        </systemPropertyVariables>
         <argLine>
           -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
         </argLine>

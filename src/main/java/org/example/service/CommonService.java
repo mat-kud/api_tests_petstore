@@ -3,7 +3,6 @@ package org.example.service;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.apache.http.HttpStatus;
 import org.example.log.Log;
 
 import java.util.HashMap;

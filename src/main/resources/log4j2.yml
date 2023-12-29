@@ -1,0 +1,36 @@
+Configuration:
+  status: warn
+
+  Properties:
+    Property:
+      - name: datePattern
+        value: "${date:yyyy-MM-dd}"
+
+  Appenders:
+    Console:
+      name: ConsoleAppender
+      target: SYSTEM_OUT
+      PatternLayout:
+        pattern: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
+    Routing:
+      - name: TestAppender
+        Routes:
+          pattern: '$${ctx:uuid}'
+          Route:
+            RollingFile:
+              immediateFlush: true
+              append: false
+              name: 'RollingFile-${ctx:uuid}'
+              fileName: '${sys:LOG_PATH}/test-${ctx:uuid}.log'
+              filePattern: '${sys:LOG_PATH}/${datePattern}/test-${ctx:uuid}.log'
+              PatternLayout:
+                pattern: '%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level- %msg%n'
+              Policies:
+                - OnStartupTriggeringPolicy
+
+  Loggers:
+    Root:
+      level: info
+      AppenderRef:
+        - ref: ConsoleAppender
+        - ref: TestAppender
