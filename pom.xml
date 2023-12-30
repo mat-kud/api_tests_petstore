@@ -24,6 +24,9 @@
     <allure.testng.version>2.25.0</allure.testng.version>
     <allure.maven.version>2.12.0</allure.maven.version>
     <log.dir>${project.basedir}/logs</log.dir>
+    <roll.on>true</roll.on>
+    <roll.size>100</roll.size>
+    <roll.freq>7</roll.freq>
   </properties>
 
   <dependencies>
@@ -99,6 +102,9 @@
       <configuration>
         <systemPropertyVariables>
           <LOG_PATH>${log.dir}</LOG_PATH>
+          <ROLL_ON>${roll.on}</ROLL_ON>
+          <ROLL_SIZE>${roll.size}</ROLL_SIZE>
+          <ROLL_FREQ>${roll.freq}</ROLL_FREQ>
         </systemPropertyVariables>
         <argLine>
           -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
