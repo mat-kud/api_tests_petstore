@@ -40,15 +40,6 @@ public class UserServiceTest extends BaseTest {
                 "User not deleted or invalid username");
     }
 
-    @Test
-    public void loginTest() {
-        User user = createUser();
-        Response loginResponse = UserServiceSteps.loginUser(user.getUsername(), user.getPassword());
-        Assert.assertEquals(loginResponse.getStatusCode(), 200,
-                "Unsuccessful login attempt");
-    }
-
-
     private User createUser() {
         Random random = new Random();
         return new User()

@@ -14,10 +14,6 @@ public class UserServiceSteps {
         return USER_SERVICE.getRequest(USER_BY_USERNAME, username);
     }
 
-    public static Response loginUser(String username, String password) {
-        return USER_SERVICE.getRequest(USER_LOGIN, username, password);
-    }
-
     public static Response createUser(User user) {
         return USER_SERVICE.postRequest(USER, user);
     }
